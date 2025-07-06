@@ -3,6 +3,7 @@ from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS, ASTEROID
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from circleshape import CircleShape
 
 def main():
     pygame.init()
@@ -30,6 +31,10 @@ def main():
                 return
         screen.fill("black")
         updatable_group.update(dt)
+        for asteroid in asteroid_group:
+            if asteroid.collision(player) == True:
+                print("You crashed!! \n ====GAME OVER====")
+            
         for drawable in drawable_group:
             drawable.draw(screen)
         pygame.display.flip()
